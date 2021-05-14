@@ -29,7 +29,7 @@ const ListLinker = styled(Link)`
   border-radius: ${({ theme }) => theme.radius};
 
   background: ${({ isfocused }) => isfocused ? '#ffffff' : 'transparent'};
-  color: ${({ theme, isfocused }) => isfocused ? "black" : theme.gray2};
+  color: ${({ theme, isfocused }) => isfocused ? "black" : theme.gray3};
   box-shadow: ${({ theme, isfocused }) => isfocused && `0px 0px 5px 1px ${theme.gray1}`};
 `;
 

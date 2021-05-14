@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListRouter from '../../Components/Main/ListRouter';
+import ListRouter from '../../Components/List/ListRouter';
 
-const Bookmark = () => {
+const BookList = () => {
   return (
-    <BookmarkPage>
+    <BookListPage>
       <ListRouter focused='bookmark' />
-    </BookmarkPage>
+    </BookListPage>
   )
 }
 
-const BookmarkPage = styled.main`
+const BookListPage = styled.main`
   width: ${({ theme }) => theme.widthWeb};
   margin: 0 auto;
   padding: 60px;
 `;
 
-export default Bookmark;
+export default BookList;

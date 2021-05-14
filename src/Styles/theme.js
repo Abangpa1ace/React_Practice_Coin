@@ -10,6 +10,7 @@ const theme = {
   rateBlue: '#3083DB',
   radius: '5px',
   transition: 'all .3s ease',
+  gridColChart: '1fr 10fr 1fr 15fr 10fr 5fr 5fr 20fr', 
   zLoader: 200,
 }
 

@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalReset from './Styles/reset';
 import { useGlobalContext } from './Context';
 import theme from './Styles/theme';
-import List from './Pages/List/List';
-import Bookmark from './Pages/List/Bookmark';
+import CoinList from './Pages/List/CoinList';
+import BookList from './Pages/List/BookList';
 import Loader from './Shared/Loader';
 
 function Routes() {
@@ -17,8 +17,8 @@ function Routes() {
       <GlobalReset />
         { isLoading && <Loader />}
         <Switch>
-          <Route exact path="/" component={List} />
-          <Route exact path="/bookmark" component={Bookmark} />
+          <Route exact path="/" component={CoinList} />
+          <Route exact path="/bookmark" component={BookList} />
           <Route path="/detail" />
         </Switch>
       </ThemeProvider>
