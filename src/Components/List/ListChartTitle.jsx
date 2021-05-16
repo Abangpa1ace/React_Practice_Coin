@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { chartGrids } from '../../Styles/theme';
 
 const ListChartTitle = () => {
   return (
@@ -17,14 +18,10 @@ const ListChartTitle = () => {
 }
 
 const ChartTitle = styled.div`
-  display: grid;
-  grid-template-columns: ${({ theme }) => theme.gridColChart};
-  grid-gap: 10px;
-  width: 100%;
-  padding: 10px 20px 10px 10px;
+  ${chartGrids};
   background: ${({ theme }) => theme.gray0};
   color: ${({ theme }) => theme.gray2};
-  border: ${({ theme }) => theme.border};
+  border-radius: 3px;
   font-size: 12px;
 
   p {

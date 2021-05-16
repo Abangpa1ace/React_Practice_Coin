@@ -11,7 +11,7 @@ const AppProvider = ({ children }) => {
     async (unit, count) => {
       setIsLoading(true);
       try {
-        const response = await fetch(COINS_API + `/markets?vs_currency=${unit}&per_page=${count}`);
+        const response = await fetch(COINS_API + `/markets?vs_currency=${unit}&per_page=${count}&price_change_percentage=1h,24h,7d`);
         const data = await response.json();
         setCoinList(data);
         setIsLoading(false);
@@ -26,6 +26,7 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         isLoading,
+        coinList,
         fetchCoins,
       }}>
       {children}

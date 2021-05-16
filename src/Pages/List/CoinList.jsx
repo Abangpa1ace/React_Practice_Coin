@@ -6,9 +6,10 @@ import { useGlobalContext } from '../../Context';
 import { selectList } from '../../Data/Data';
 import { flexAlign } from '../../Styles/theme';
 import ListChartTitle from '../../Components/List/ListChartTitle';
+import ListChartItem from '../../Components/List/ListChartItem';
 
 const CoinList = () => {
-  const { fetchCoins } = useGlobalContext();
+  const { coinList, fetchCoins } = useGlobalContext();
   const [selectValue, setSelectValue] = useState({
     filter: '전체',
     unit: 'krw',
@@ -43,7 +44,7 @@ const CoinList = () => {
       </ListSelects>
       <ListChart>
         <ListChartTitle />
-
+        {coinList && coinList.map((item) => <ListChartItem />)}
       </ListChart>
     </CoinListPage>
   )
@@ -63,7 +64,7 @@ const ListSelects = styled.div`
   margin: 10px 0;
 `;
 
-const ListChart = styled.div`
+const ListChart = styled.ul`
   width: 100%;
 `;
 

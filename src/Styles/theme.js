@@ -32,3 +32,11 @@ export const flexAlign = css`
   display: flex;
   align-items: center;
 `;
+
+export const chartGrids = css`
+  display: grid;
+  grid-template-columns: ${({ theme }) => theme.gridColChart};
+  grid-gap: 10px;
+  width: 100%;
+  padding: 10px 20px 10px 10px;
+`;
