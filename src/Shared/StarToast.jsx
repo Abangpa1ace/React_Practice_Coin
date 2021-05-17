@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsFillStarFill } from 'react-icons/bs';
 import styled, { keyframes } from 'styled-components';
 import { useGlobalContext } from '../Context';
@@ -7,16 +7,18 @@ const StarToast = ({ id, isBooked }) => {
   const { coinList, setCoinList } = useGlobalContext();
   const [showToast, setShowToast] = useState(false);
 
-  const toggleBooked = (id) => {
-    setShowToast(true);
-    setTimeout(() => {
+  useEffect(() => {
+    const toastTimer = setTimeout(() => {
       setShowToast(false);
     }, 3000);
+    return () => clearTimeout(toastTimer);
+  }, [showToast])
+
+  const toggleBooked = (id) => {
+    setShowToast(true);
     const toggledList = coinList.map(coin => coin.id === id ? {...coin, booked: !coin.booked } : coin);
     setCoinList(toggledList);
   }
-
-  
 
   return (
     <Startoast isBooked={isBooked} onClick={() => toggleBooked(id)}>
@@ -53,6 +55,7 @@ const Toast = styled.span`
   top: 10px;
   width: 200px;
   padding: 10px;
+  visibility: hidden;
   background: #BDCEEE;
   font-size: 14px;
   animation: ${toastAni} 3s ease;
