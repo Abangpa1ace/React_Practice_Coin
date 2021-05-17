@@ -5,11 +5,11 @@ import SelectBox from '../../Shared/SelectBox';
 import { useGlobalContext } from '../../Context';
 import { selectList } from '../../Data/Data';
 import { flexAlign } from '../../Styles/theme';
-import ListChartTitle from '../../Components/List/ListChartTitle';
-import ListChartItem from '../../Components/List/ListChartItem';
+import ListChart from '../../Components/List/ListChart/ListChart';
 
 const CoinList = () => {
-  const { coinList, fetchCoins } = useGlobalContext();
+  const { coinList, fetchCoins, filterCoins } = useGlobalContext();
+  const [reqCount, setReqCount] = useState(1);
   const [selectValue, setSelectValue] = useState({
     filter: '전체',
     unit: 'krw',
@@ -18,10 +18,15 @@ const CoinList = () => {
   const { filter, unit, count } = selectValue;
 
   useEffect(() => {
-    fetchCoins(unit, count);
-  }, [unit, count])
+    filterCoins(filter)
+  }, [filter])
+
+  useEffect(() => {
+    fetchCoins(unit, count, reqCount);
+  }, [unit, count, reqCount])
 
   const changeSelect = (select, value) => {
+    setReqCount(1);
     setSelectValue({
       ...selectValue,
       [select]: value,
@@ -42,10 +47,10 @@ const CoinList = () => {
           />
         )}
       </ListSelects>
-      <ListChart>
-        <ListChartTitle />
-        {coinList && coinList.map((item) => <ListChartItem />)}
-      </ListChart>
+      <ListChart coins={coinList} unit={unit} />
+      <ListMoreBtn onClick={() => setReqCount((prev) => prev + 1)}>
+        + 더보기
+      </ListMoreBtn>
     </CoinListPage>
   )
 }
@@ -64,8 +69,13 @@ const ListSelects = styled.div`
   margin: 10px 0;
 `;
 
-const ListChart = styled.ul`
-  width: 100%;
+const ListMoreBtn = styled.div`
+  padding: 20px 0;
+  color: ${({ theme }) => theme.gray3};
+  border-bottom: 1px solid ${({ theme }) => theme.gray0};
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
 `;
 
 export default CoinList;

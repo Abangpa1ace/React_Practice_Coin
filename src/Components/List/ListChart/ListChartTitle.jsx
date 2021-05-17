@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { chartGrids } from '../../Styles/theme';
+import { chartGrids } from '../../../Styles/theme';
 
 const ListChartTitle = () => {
   return (
@@ -19,18 +19,12 @@ const ListChartTitle = () => {
 
 const ChartTitle = styled.div`
   ${chartGrids};
+  padding-top: 10px;
+  padding-bottom: 10px;
   background: ${({ theme }) => theme.gray0};
   color: ${({ theme }) => theme.gray2};
   border-radius: 3px;
   font-size: 12px;
-
-  p {
-    text-align: right;
-
-    &.left {
-      text-align: left;
-    }
-  }
 `;
 
 export default ListChartTitle;

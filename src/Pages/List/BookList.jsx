@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import ListChart from '../../Components/List/ListChart/ListChart';
 import ListRouter from '../../Components/List/ListRouter';
 
 const BookList = () => {
   return (
     <BookListPage>
       <ListRouter focused='bookmark' />
+      <ListChart coins unit="krw" />
     </BookListPage>
   )
 }
