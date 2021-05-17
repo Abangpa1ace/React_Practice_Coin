@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { useGlobalContext } from '../Context';
 
 const StarToast = ({ id, isBooked }) => {
-  const { coinList, setCoinList } = useGlobalContext();
+  const { coinList, setCoinList, savedCoins } = useGlobalContext();
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
@@ -18,11 +18,12 @@ const StarToast = ({ id, isBooked }) => {
     setShowToast(true);
     const toggledList = coinList.map(coin => coin.id === id ? {...coin, booked: !coin.booked } : coin);
     setCoinList(toggledList);
+    savedCoins.current = toggledList;
   }
 
   return (
-    <Startoast isBooked={isBooked} onClick={() => toggleBooked(id)}>
-      <BsFillStarFill />
+    <Startoast isBooked={isBooked}>
+      <BsFillStarFill onClick={() => toggleBooked(id)}/>
       {showToast && 
         <Toast>북마크가 {isBooked ? '설정' : '해제'}되었습니다.</Toast>
       }
@@ -51,15 +52,16 @@ const toastAni = keyframes`
 
 const Toast = styled.span`
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 15px;
+  top: 15px;
   width: 200px;
   padding: 10px;
   visibility: hidden;
   background: #BDCEEE;
   font-size: 14px;
-  animation: ${toastAni} 3s ease;
+  border-radius: ${({ theme }) => theme.radius};
   z-index: ${({ theme }) => theme.zToast};
+  animation: ${toastAni} 2s ease;
 `;
 
 export default StarToast

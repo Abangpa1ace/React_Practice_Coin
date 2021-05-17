@@ -56,7 +56,7 @@ const CoinList = () => {
 }
 
 const CoinListPage = styled.main`
-  width: ${({ theme }) => theme.widthWeb};
+  width: ${({ theme }) => theme.widthListPage};
   margin: 0 auto;
   padding: 60px;
 `;

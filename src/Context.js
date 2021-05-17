@@ -46,6 +46,7 @@ const AppProvider = ({ children }) => {
         isLoading,
         coinList,
         setCoinList,
+        savedCoins,
         fetchCoins,
         filterCoins,
       }}>
