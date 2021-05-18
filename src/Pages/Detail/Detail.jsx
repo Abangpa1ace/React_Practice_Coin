@@ -53,6 +53,9 @@ const Detail = () => {
     localization,
     market_cap_rank, 
     links,
+    market_data,
+
+    description,
 
   } = coinDetail;
 
@@ -71,7 +74,10 @@ const Detail = () => {
       <DetailInfo 
         rank={market_cap_rank}
         links={links}
+        marketData={market_data}
+        unit={unit}
       />
+      <div>{description && description.ko}</div>
     </DetailPage>
   )
 };

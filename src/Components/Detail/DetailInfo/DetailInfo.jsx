@@ -2,8 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import DetailTableItem from './DetailTableItem';
 import { flexBetween } from '../../../Styles/theme';
+import { Paragraph } from '../../../Shared/StyledTags';
 
-const DetailInfo = ({ rank, links }) => {
+const DetailInfo = ({ rank, links, marketData, unit }) => {
+  let prices;
+  if (marketData) {
+    prices = marketData.current_price;
+  }
+
+
 
   return (
     <Detailinfo>
@@ -22,7 +29,23 @@ const DetailInfo = ({ rank, links }) => {
         />
       </DetailTable>
       <DetailPrices>
-        <div>hihi</div>
+        <div>
+          <div>
+            <Paragraph
+              fontSize="18px"
+              fontWeight="700"
+            >
+              {unit === "krw" ? '₩' : '$'}
+              {prices && prices[unit].toLocaleString()}
+            </Paragraph>
+            <Paragraph
+              fontSize="12px"
+              color={({ theme }) => theme.gray2}
+            >
+              1.00000000BTC
+            </Paragraph>
+          </div>
+        </div>
         <div>hihi</div>
       </DetailPrices>
     </Detailinfo>
@@ -46,7 +69,7 @@ const DetailPrices = styled.div`
   justify-content: space-between;
   align-items: flex-end;
 
-  div {
+  & > div {
     ${flexBetween};
   }
 `;
