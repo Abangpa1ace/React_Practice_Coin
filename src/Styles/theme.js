@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const theme = {
   widthListPage: '1100px',
-  widthDetailPage: '1400px',
+  widthDetailPage: '1200px',
   gray0: '#F4F4F4',
   gray1: '#C4C4C4',
   gray2: '#B0B0B0',

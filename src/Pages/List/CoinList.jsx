@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import ListRouter from '../../Components/List/ListRouter';
+import ListChart from '../../Components/List/ListChart/ListChart';
 import SelectBox from '../../Shared/SelectBox';
 import { useGlobalContext } from '../../Context';
 import { selectList } from '../../Data/Data';
 import { flexAlign } from '../../Styles/theme';
-import ListChart from '../../Components/List/ListChart/ListChart';
 
 const CoinList = () => {
   const { coinList, fetchCoins, filterCoins } = useGlobalContext();

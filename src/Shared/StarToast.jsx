@@ -3,27 +3,32 @@ import { BsFillStarFill } from 'react-icons/bs';
 import styled, { keyframes } from 'styled-components';
 import { useGlobalContext } from '../Context';
 
-const StarToast = ({ id, isBooked }) => {
+const StarToast = ({ id, isBooked, handleBook }) => {
   const { coinList, setCoinList, savedCoins } = useGlobalContext();
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const toastTimer = setTimeout(() => {
       setShowToast(false);
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(toastTimer);
   }, [showToast])
 
-  const toggleBooked = (id) => {
+  const toggleBooked = (id, handleBook) => {
     setShowToast(true);
-    const toggledList = coinList.map(coin => coin.id === id ? {...coin, booked: !coin.booked } : coin);
-    setCoinList(toggledList);
-    savedCoins.current = toggledList;
+    if (handleBook) {
+      handleBook();
+    }
+    else {
+      const toggledList = coinList.map(coin => coin.id === id ? {...coin, booked: !coin.booked } : coin);
+      setCoinList(toggledList);
+      savedCoins.current = toggledList;
+    }
   }
 
   return (
     <Startoast isBooked={isBooked}>
-      <BsFillStarFill onClick={() => toggleBooked(id)}/>
+      <BsFillStarFill onClick={() => toggleBooked(id, handleBook)}/>
       {showToast && 
         <Toast>북마크가 {isBooked ? '설정' : '해제'}되었습니다.</Toast>
       }
