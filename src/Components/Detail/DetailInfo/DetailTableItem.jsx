@@ -14,7 +14,6 @@ const DetailTableItem = ({ title, value, isTop }) => {
 const TableItem = styled.div`
   ${flexAlign};
   height: 50%;
-  text-align: left;
   border: 1px solid ${({ theme }) => theme.gray1};
   border-top: ${({ isTop, theme }) => isTop ? `1px solid ${theme.gray1}` : "none" };
 

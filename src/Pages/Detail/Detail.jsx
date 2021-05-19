@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
+import DetailDesc from '../../Components/Detail/DetailDesc';
+import DetailExchange from '../../Components/Detail/DetailExchange/DetailExchange';
 import DetailHeader from '../../Components/Detail/DetailHeader';
 import DetailInfo from '../../Components/Detail/DetailInfo/DetailInfo';
 import { useGlobalContext } from '../../Context';
@@ -10,7 +12,9 @@ const Detail = () => {
   const { savedCoins } = useGlobalContext();
   const path = window.location.pathname.split("/").pop();
   const [coinDetail, setCoinDetail] = useState({});
+
   const [unit, setUnit] = useState("krw");
+  const [isShowDesc, setIsShowDesc] = useState(false);
 
   const fetchCoinDetail = async (path) => {
     try {
@@ -29,7 +33,7 @@ const Detail = () => {
 
   useEffect(() => {
     const savedCoin = JSON.parse(sessionStorage.getItem("coin"));
-    if (savedCoin.id === path) {
+    if (savedCoin && savedCoin.id === path) {
       setCoinDetail(savedCoin);
     }
     else {
@@ -54,7 +58,6 @@ const Detail = () => {
     market_cap_rank, 
     links,
     market_data,
-
     description,
 
   } = coinDetail;
@@ -77,7 +80,14 @@ const Detail = () => {
         marketData={market_data}
         unit={unit}
       />
-      <div>{description && description.ko}</div>
+      <DetailExchange 
+      
+      />
+      <DetailDesc
+        description={description}
+        isShowDesc={isShowDesc}
+        setIsShowDesc={setIsShowDesc}
+      />
     </DetailPage>
   )
 };
