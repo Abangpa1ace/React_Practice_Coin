@@ -23,6 +23,7 @@ client
 └── src/                      
     ├── index.js                  - index.html ReactDOM 렌더링, Context.js 하달(Provider)
     ├── Routes.js                 - Root Component, React 라우터 + <Loader /> 컴포넌트 포함
+    ├── Context.js                - 공통상태(로딩, 코인목록), 목록저장(useRef), 공통함수(목록 fetch, Select-box 필터링)
     │ 
     ├── Components/               - 페이지별 Presentational 컴포넌트
     │   ├── Detail/               
@@ -32,43 +33,19 @@ client
     │   │   └── FooterData.jsx    - 상세 페이지 최상단 이름 및 Select-box 부분
     │   │
     │   └── List/               
-    │       ├── ListChart/        - 
-    │       └── index.jsx         - Login 모달창 컨테이너
+    │       ├── ListChart/        - 리스트 페이지 표 부분
+    │       └── ListRouter.jsx    - 리스트 페이지 상단 <CoinList />, <BookList /> 페이지 이동 라우팅 버튼부분
     │ 
     ├── Data/                     
-    │   ├── config.js             - 서버 API URL, 약관 Mock Data 포함
-    │   └── data.js               - mock-data(JS 숙소리스트)
-    │ 
-    ├── Hooks/                     
-    │   └── useScroll.jsx         - scroll up/down 계산 커스텀 훅
+    │   └── data.js               - 각종 데이터(API 주소, SelectBox 목록, 환율입력 정규식)
     │
     ├── Pages/
-    │   ├── Cart/                 - Cart 장바구니 페이지
-    │   │   ├── components/       - 구성 컴포넌트 (CartList, CartAside, CartModal)
-    │   │   └── index.jsx         - Cart 페이지 컨테이너
+    │   ├── Detail/               - Detail 상세정보 페이지
+    │   │   └── Detail.jsx        - Detail 페이지 Container 컴포넌트(로직포함)
     │   │
-    │   ├── Detail/               - Detail 상세 페이지
-    │   │   ├── components/       - 구성 컴포넌트 (DetailImages, DetailInfo, DetailModal)
-    │   │   └── index.jsx         - Detail 페이지 컨테이너
-    │   │
-    │   ├── List/                 - List 상품목록 페이지
-    │   │   ├── components/       - 구성 컴포넌트 (ListHeader, ListFilter, ListItemWrapper)
-    │   │   ├── index.jsx         - List 페이지 컨테이너
-    │   │   └── ListData.js       - List 페이지 필터박스 데이터
-    │   │
-    │   ├── Main/                 - Main 메인 페이지
-    │   │   └── index.jsx         - 내용없음(Routes 초기 포인트)
-    │   │
-    │   └── Register/             - Register 회원가입 페이지
-    │       ├── components/       - 구성 컴포넌트 (RegisterAbove, RegisterForm)
-    │       └── index.jsx         - Register 페이지 컨테이너
-    │
-    ├── Store/                     
-    │   ├── Action/               - Action Type 변수, 생성자 함수
-    │   ├── Reducer/              - 초기 State, Reducer함수 및 RootReducer
-    │   ├── Saga/                 - 비동기 fetch Saga함수 및 RootSaga
-    │   ├── Selector.js           - itemListSaga Store 상태참고를 위한 상태 Selector
-    │   └── Store.js              - RootReducer, RootSaga, 미들웨어 병합 및 Store 전달
+    │   ├── List/                 - List 코인목록 페이지들
+    │   │   ├── CoinList.jsx      - CoinList 전체코인 리스트 페이지
+    │   │   └── BookList.jsx      - BookList 북마크된 코인 리스트 페이지
     │     
     ├── Styles/                     
     │   ├── reset.js              - createGlobalStyle 초기화 속성
