@@ -7,3 +7,8 @@ export const selectList = {
   unit: ['krw', 'usd'],
   count: [50, 30, 10],
 }
+
+export const currencyRegex = {
+  cryptocurrency: /^[0-9.]/g,
+  currency: /^[0-9]/g,
+}

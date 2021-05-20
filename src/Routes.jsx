@@ -4,9 +4,10 @@ import { ThemeProvider } from 'styled-components';
 import GlobalReset from './Styles/reset';
 import { useGlobalContext } from './Context';
 import theme from './Styles/theme';
+import Loader from './Shared/Loader';
 import CoinList from './Pages/List/CoinList';
 import BookList from './Pages/List/BookList';
-import Loader from './Shared/Loader';
+import Detail from './Pages/Detail/Detail';
 
 function Routes() {
   const { isLoading } = useGlobalContext();
@@ -19,7 +20,7 @@ function Routes() {
         <Switch>
           <Route exact path="/" component={CoinList} />
           <Route exact path="/bookmark" component={BookList} />
-          <Route path="/detail" />
+          <Route path="/detail" component={Detail} />
         </Switch>
       </ThemeProvider>
     </Router>

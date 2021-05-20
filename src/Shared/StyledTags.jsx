@@ -7,18 +7,19 @@ const StyledParagraph = styled.p`
   padding: ${({ padding }) => padding};
   color: ${({ color }) => color || "#000000" };
   font-size: ${({ fontSize }) => fontSize || 'initial'};
+  font-weight: ${({ fontWeight }) => fontWeight || '400'};
   &:hover {
     color: ${({ colorHov }) => colorHov };
   }
 `;
 
 export const Paragraph = ({
-  children, hide, margin, padding, color, colorHov, fontSize
+  children, hide, margin, padding, color, colorHov, fontSize, fontWeight
 }) => {
   return (
     <StyledParagraph
       hide={hide} margin={margin} padding={padding} 
-      color={color} colorHov={colorHov} fontSize={fontSize}
+      color={color} colorHov={colorHov} fontSize={fontSize} fontWeight={fontWeight}
     >
       {children}
     </StyledParagraph>
