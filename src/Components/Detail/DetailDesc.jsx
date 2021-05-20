@@ -7,7 +7,12 @@ const DetailDesc = ({ description, isShowDesc, setIsShowDesc }) => {
       <DetailDescBtn onClick={() => setIsShowDesc((prev) => !prev)}>
         설명{isShowDesc ? "숨기기 ▲" : "보기 ▼"}
       </DetailDescBtn>
-      {isShowDesc && <DetailDescText>{description && description.ko ? description.ko : description.ko}</DetailDescText>}
+      {(isShowDesc && (description.ko || description.en)) &&
+        <DetailDescText>
+          {description && 
+            description.ko ? description.ko : description.en}
+        </DetailDescText>
+      }
     </Detaildesc>
   )
 }

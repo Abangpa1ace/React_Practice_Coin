@@ -5,15 +5,22 @@ import DetailExchange from '../../Components/Detail/DetailExchange/DetailExchang
 import DetailHeader from '../../Components/Detail/DetailHeader';
 import DetailInfo from '../../Components/Detail/DetailInfo/DetailInfo';
 import { useGlobalContext } from '../../Context';
-import { COINS_API } from '../../Data/Data';
+import { COINS_API, currencyRegex } from '../../Data/Data';
 
 
 const Detail = () => {
+  // Coin Informations
   const { savedCoins } = useGlobalContext();
   const path = window.location.pathname.split("/").pop();
   const [coinDetail, setCoinDetail] = useState({});
-
+  // Coin Exchange
   const [unit, setUnit] = useState("krw");
+  const [exchange, setExchange] = useState({
+    cryptocurrency: 1,
+    currency: 1,
+  })
+  let exchangeRate = 21296653.24;
+  // Coin Description
   const [isShowDesc, setIsShowDesc] = useState(false);
 
   const fetchCoinDetail = async (path) => {
@@ -49,6 +56,26 @@ const Detail = () => {
     setCoinDetail({ ...coinDetail, booked: !coinDetail.booked })
   }
 
+  const updateCurrency = (event) => {
+    let { name, value } = event.target;
+    const regex = currencyRegex[name];
+    value = value.replaceAll(/,/g, "");
+    
+    if (regex.test(Number(value))) {
+      if (name === "cryptocurrency" && value.split(".").pop().length > 8) {
+        return;
+      }
+      if (name === "currency" && value[0] === "0") {
+        return;
+      }
+      const anotherKey = Object.keys(exchange).find(key => key !== name)
+      setExchange({
+        [anotherKey]: name === "currency" ? (value / exchangeRate).toFixed(8) : value * exchangeRate,
+        [name]: value,
+      })
+    }
+  }
+
   const { 
     id, 
     booked, 
@@ -59,7 +86,6 @@ const Detail = () => {
     links,
     market_data,
     description,
-
   } = coinDetail;
 
   return (
@@ -80,8 +106,10 @@ const Detail = () => {
         marketData={market_data}
         unit={unit}
       />
-      <DetailExchange 
-      
+      <DetailExchange
+        exchange={exchange}
+        handleChange={updateCurrency}
+        unit={unit}
       />
       <DetailDesc
         description={description}

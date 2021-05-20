@@ -9,8 +9,8 @@ const DetailExchangeInput = ({ title, name, value, handleChange }) => {
       <div>
         <input 
           name={name}
-          value={value}
-          onChange={(e) => handleChange(e.target.name, e.target.value)}
+          value={Number(value) < 1 ? Number(value) : Number(value).toLocaleString()}
+          onChange={(e) => handleChange(e)}
         />
       </div>
     </ExchangeInput>
