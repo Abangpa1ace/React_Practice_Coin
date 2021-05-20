@@ -13,6 +13,7 @@ const Detail = () => {
   const { savedCoins } = useGlobalContext();
   const path = window.location.pathname.split("/").pop();
   const [coinDetail, setCoinDetail] = useState({});
+  
   // Coin Exchange
   const [unit, setUnit] = useState("krw");
   const [exchange, setExchange] = useState({
@@ -20,6 +21,8 @@ const Detail = () => {
     currency: 1,
   })
   let exchangeRate = 21296653.24;
+  if (unit === "usd") exchangeRate /= 1100;
+
   // Coin Description
   const [isShowDesc, setIsShowDesc] = useState(false);
 
@@ -60,7 +63,7 @@ const Detail = () => {
     let { name, value } = event.target;
     const regex = currencyRegex[name];
     value = value.replaceAll(/,/g, "");
-    
+
     if (regex.test(Number(value))) {
       if (name === "cryptocurrency" && value.split(".").pop().length > 8) {
         return;
